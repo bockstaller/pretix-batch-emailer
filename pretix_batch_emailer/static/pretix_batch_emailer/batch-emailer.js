@@ -1,12 +1,8 @@
 
-
-
-
-
 $(document).ready(function () {
     const batch_emailer = function () {
         var orders = new Set();
-        const regex = /(?<=\/control\/event\/test\/testevent\/orders\/)([A-Z\d]+)/;
+        const regex = /(?<=\/orders\/)([A-Z\d]+)/;
         $('a').each(function () {
             const path = this.pathname;
 
@@ -36,5 +32,4 @@ $(document).ready(function () {
     x.click(fill_out_form)
 
 });
-
 

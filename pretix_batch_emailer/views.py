@@ -172,7 +172,7 @@ class BatchSenderView(EventPermissionRequiredMixin, FormView):
         )
 
         return redirect(
-            "plugins:sendmail:send",
+            "plugins:pretix_batch_emailer:history",
             event=self.request.event.slug,
             organizer=self.request.event.organizer.slug,
         )
