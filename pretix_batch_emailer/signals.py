@@ -19,8 +19,8 @@ def nav_topbar_f(sender, request=None, **kwargs):
     if re.match(r"^/control/event/(?P<organizer>[^/]+)/(?P<event>[^/]+)/", sender.path):
         if "pretix_batch_emailer" in sender.event.plugins:
             return [{"label": _("Email visible orders"), "url": "#batch-emailer"}]
-    else:
-        return []
+
+    return [{"label": "", "url": ""}]
 
 
 @receiver(html_page_start, dispatch_uid="pretix_batch_emailer")
