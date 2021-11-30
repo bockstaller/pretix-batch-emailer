@@ -28,6 +28,7 @@ from .tasks import send_mails
 from django.urls import reverse_lazy, reverse
 from . import forms
 from django.shortcuts import redirect
+from django.contrib import messages
 
 
 class BatchSenderView(EventPermissionRequiredMixin, FormView):
@@ -87,8 +88,14 @@ class BatchSenderView(EventPermissionRequiredMixin, FormView):
                     },
                     event=self.request.event,
                 )
+                return self.render_to_response(self.get_context_data(form=form))
+            else:
+                previous = request.POST.get("previous", "/")
+                messages.add_message(
+                    request, messages.ERROR, _("No orders are visible.")
+                )
+                return HttpResponseRedirect(previous)
 
-            return self.render_to_response(self.get_context_data(form=form))
         return super().post(request, *args, **kwargs)
 
     def form_invalid(self, form):

@@ -7,7 +7,8 @@
 
 <form id="batch_emailer" action="{% url 'plugins:pretix_batch_emailer:batch_send' organizer.slug event.slug %}" method="post" class="form-horizontal">
     {% csrf_token %}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
+        <input type="hidden" name="previous" id="batch_emailer_previous" value="{{ request.path }}">
+        {{ form.orders }}
+        {{ form.url }}
+        {{ form.action }}
 </form>

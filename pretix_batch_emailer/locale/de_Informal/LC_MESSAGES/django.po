@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-30 23:35+0100\n"
+"POT-Creation-Date: 2021-12-01 00:20+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Lukas Bockstaller\n"
 "Language-Team: \n"
@@ -20,23 +20,23 @@ msgstr "Batch E-Mailer"
 msgid "Send a Batch Email to all currently displayed orders. "
 msgstr "Sende eine Batch E-Mail an alle dargestellten Bestellungen. "
 
-#: pretix_batch_emailer/forms.py:25
+#: pretix_batch_emailer/forms.py:26
 msgid "Recipient Description"
 msgstr "Recipient Description"
 
-#: pretix_batch_emailer/forms.py:26 pretix_batch_emailer/forms.py:95
+#: pretix_batch_emailer/forms.py:27 pretix_batch_emailer/forms.py:96
 msgid "Subject"
 msgstr "Betreff"
 
-#: pretix_batch_emailer/forms.py:27 pretix_batch_emailer/forms.py:101
+#: pretix_batch_emailer/forms.py:28 pretix_batch_emailer/forms.py:102
 msgid "Message"
 msgstr "Nachricht"
 
-#: pretix_batch_emailer/forms.py:29
+#: pretix_batch_emailer/forms.py:30
 msgid "Attachment"
 msgstr "Anhang"
 
-#: pretix_batch_emailer/forms.py:55
+#: pretix_batch_emailer/forms.py:56
 msgid ""
 "Sending an attachment increases the chance of your email not arriving or "
 "being sorted into spam folders. We recommend only using PDFs of no more than "
@@ -46,12 +46,12 @@ msgstr ""
 "oder in Spamordner sortiert wird. Wir empfehlen nur PDF-Dateien mit maximal "
 "2 MB zu verwenden."
 
-#: pretix_batch_emailer/forms.py:68
+#: pretix_batch_emailer/forms.py:69
 #, python-brace-format
 msgid "Available placeholders: {list}"
 msgstr "Verfügbare Platzhalter: {list}"
 
-#: pretix_batch_emailer/forms.py:88
+#: pretix_batch_emailer/forms.py:89
 msgid "Send email to"
 msgstr "E-Mail verschicken an"
 
@@ -110,30 +110,34 @@ msgstr "E-Mail Vorschau"
 msgid "Send"
 msgstr "Senden"
 
-#: pretix_batch_emailer/views.py:72
+#: pretix_batch_emailer/views.py:73
 msgid "You supplied an invalid log entry ID"
 msgstr "Du hast eine ungültige Log Eintrag ID übergeben"
 
-#: pretix_batch_emailer/views.py:96
+#: pretix_batch_emailer/views.py:95
+msgid "No orders are visible."
+msgstr "Keine sichtbaren Bestellungen."
+
+#: pretix_batch_emailer/views.py:103
 msgid "We could not send the email. See below for details."
 msgstr "Wir konnten die Batch E-Mail nicht versenden. Details siehe unten."
 
-#: pretix_batch_emailer/views.py:106
+#: pretix_batch_emailer/views.py:113
 msgid "There are no orders matching this selection."
 msgstr "Es existieren keine Bestellungen die der Auswahl entsprechen."
 
-#: pretix_batch_emailer/views.py:121
+#: pretix_batch_emailer/views.py:128
 msgid "This value will be replaced based on dynamic parameters."
 msgstr ""
 "Dieser Textbaustein wird aufgrund verschiedener Parameter dynamisch "
 "angepasst."
 
-#: pretix_batch_emailer/views.py:136
+#: pretix_batch_emailer/views.py:143
 #, python-brace-format
 msgid "Subject: {subject}"
 msgstr "Betreff: {subject}"
 
-#: pretix_batch_emailer/views.py:168
+#: pretix_batch_emailer/views.py:175
 #, python-format
 msgid ""
 "Your message has been queued and will be sent to the contact addresses of %d "

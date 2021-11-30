@@ -18,7 +18,8 @@ from pretix.control.forms.widgets import Select2, Select2Multiple
 
 
 class BatchMailForm(forms.Form):
-    orders = forms.CharField(widget=forms.HiddenInput())
+    orders = forms.CharField(widget=forms.HiddenInput(), required=True)
+    previous = forms.CharField(widget=forms.HiddenInput(), required=True)
     recipients = SafeModelMultipleChoiceField(
         queryset=Order.objects.none(),
     )
