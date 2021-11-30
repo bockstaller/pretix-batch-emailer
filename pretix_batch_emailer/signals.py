@@ -1,17 +1,12 @@
-from distutils.util import strtobool
-from django.dispatch import receiver
-from django.utils.timezone import now
-from django.utils.translation import gettext_lazy as _
-from pretix import settings
-from pretix.control.signals import html_page_start, nav_topbar, html_head, nav_event
-from pretix_batch_emailer.forms import CollectBulkOrdersForm
-from django.template.loader import render_to_string
-from django.contrib.staticfiles import finders
-from django.templatetags.static import static
-from pretix_batch_emailer.views import BatchSenderView
-from django.urls import resolve, reverse
 import re
+from django.dispatch import receiver
+from django.templatetags.static import static
+from django.urls import resolve, reverse
+from django.utils.translation import gettext_lazy as _
 from pretix.base.signals import logentry_display
+from pretix.control.signals import html_head, html_page_start, nav_event, nav_topbar
+
+from pretix_batch_emailer.views import BatchSenderView
 
 
 @receiver(nav_topbar, dispatch_uid="pretix_batch_emailer")

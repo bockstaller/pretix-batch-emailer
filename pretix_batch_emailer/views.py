@@ -1,34 +1,21 @@
-from django.views.generic import FormView, View
-from pretix.control.permissions import EventPermissionRequiredMixin
-from pretix_batch_emailer.forms import CollectBulkOrdersForm
-from django.http import (
-    HttpResponseRedirect,
-)
-from django.template.loader import render_to_string
-import logging
-
 import bleach
-import dateutil
 from django.contrib import messages
-from django.db.models import Exists, OuterRef, Q
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
-from django.utils.timezone import now
+from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView, ListView
-
 from pretix.base.email import get_available_placeholders
 from pretix.base.i18n import LazyI18nString, language
-from pretix.base.models import LogEntry, Order, OrderPosition
-from pretix.base.models.event import SubEvent
+from pretix.base.models import LogEntry, Order
 from pretix.base.services.mail import TolerantDict
 from pretix.base.templatetags.rich_text import markdown_compile_email
 from pretix.control.permissions import EventPermissionRequiredMixin
-from .tasks import send_mails
-from django.urls import reverse_lazy, reverse
+
+from pretix_batch_emailer.forms import CollectBulkOrdersForm
+
 from . import forms
-from django.shortcuts import redirect
-from django.contrib import messages
+from .tasks import send_mails
 
 
 class BatchSenderView(EventPermissionRequiredMixin, FormView):
@@ -207,11 +194,6 @@ class EmailHistoryView(EventPermissionRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
 
-        itemcache = {i.pk: str(i) for i in self.request.event.items.all()}
-        checkin_list_cache = {
-            i.pk: str(i) for i in self.request.event.checkin_lists.all()
-        }
-        status = dict(Order.STATUS_CHOICE)
         for log in ctx["logs"]:
             log.pdata = log.parsed_data
             log.pdata["locales"] = {}

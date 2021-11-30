@@ -1,5 +1,4 @@
 from i18nfield.strings import LazyI18nString
-
 from pretix.base.email import get_email_context
 from pretix.base.i18n import language
 from pretix.base.models import Event, InvoiceAddress, Order, User

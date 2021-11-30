@@ -2,8 +2,31 @@ Batch Emailer
 ==========================
 
 This is a plugin for `pretix`_. 
+It allows you to send Emails to all orders, which are currently displayed. 
 
-Send an Email to all currently displayed orders. 
+Use the filters in the order view, the question answer page, ... to select the group of orders you want to adress. 
+
+.. warning::
+    This plugin doesn't support pagination. It grabs all currently rendered order links, this excludes all orders on the next and previous pages.
+    Currently you have to send the same email multiple times, once for each page.
+
+.. image:: docs/Button.png
+  :width: 400
+  :alt: Pretix Control view with an additional button in the top header. It has the label "Batch email visible orders".
+
+The Button "Batch email visible orders" preloads an email composition view with all these orders.
+
+.. image:: docs/ComposeMails.png
+  :width: 400
+  :alt: Email composition interface
+
+There exists a seperate history for all batch emails.
+
+.. image:: docs/History.png
+  :width: 400
+  :alt: Send email history for batch emails.
+
+
 
 Development setup
 -----------------

@@ -1,25 +1,17 @@
 from django import forms
-
 from django.conf import settings
-from django.core.exceptions import ValidationError
-from django.forms.widgets import HiddenInput, TextInput
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _, pgettext_lazy
-from django_scopes.forms import SafeModelMultipleChoiceField
 from django.forms import ModelMultipleChoiceField
+from django.utils.translation import gettext_lazy as _
+from django_scopes.forms import SafeModelMultipleChoiceField
 from i18nfield.forms import I18nFormField, I18nTextarea, I18nTextInput
-from pretix.base.models import Order
 from pretix.base.email import get_available_placeholders
 from pretix.base.forms import PlaceholderValidator
-from pretix.base.forms.widgets import SplitDateTimePickerWidget
-from pretix.base.models import CheckinList, Item, Order, SubEvent
+from pretix.base.models import Order
 from pretix.control.forms import CachedFileField
-from pretix.control.forms.widgets import Select2, Select2Multiple
 
 
 class BatchMailForm(forms.Form):
     orders = forms.CharField(widget=forms.HiddenInput(), required=True)
-    previous = forms.CharField(widget=forms.HiddenInput(), required=True)
     recipients = SafeModelMultipleChoiceField(
         queryset=Order.objects.none(),
     )
@@ -126,3 +118,4 @@ class CollectBulkOrdersForm(forms.Form):
         widget=forms.HiddenInput(attrs={"id": "batch_emailer_action"}),
         initial="prefill",
     )
+    previous = forms.CharField(widget=forms.HiddenInput())
