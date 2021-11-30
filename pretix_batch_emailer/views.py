@@ -102,8 +102,8 @@ class BatchSenderView(EventPermissionRequiredMixin, FormView):
             return self.get(self.request, *self.args, **self.kwargs)
 
         if self.request.POST.get("action") == "preview":
-            for l in self.request.event.settings.locales:
-                with language(l, self.request.event.settings.region):
+            for locale in self.request.event.settings.locales:
+                with language(locale, self.request.event.settings.region):
                     context_dict = TolerantDict()
                     for k, v in get_available_placeholders(
                         self.request.event, ["event", "order", "position_or_address"]
@@ -118,15 +118,15 @@ class BatchSenderView(EventPermissionRequiredMixin, FormView):
                         )
 
                     subject = bleach.clean(
-                        form.cleaned_data["subject"].localize(l), tags=[]
+                        form.cleaned_data["subject"].localize(locale), tags=[]
                     )
                     preview_subject = subject.format_map(context_dict)
-                    message = form.cleaned_data["message"].localize(l)
+                    message = form.cleaned_data["message"].localize(locale)
                     preview_text = markdown_compile_email(
                         message.format_map(context_dict)
                     )
 
-                    self.output[l] = {
+                    self.output[locale] = {
                         "subject": _("Subject: {subject}").format(
                             subject=preview_subject
                         ),
