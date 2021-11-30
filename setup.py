@@ -28,7 +28,7 @@ cmdclass = {"build": CustomBuild}
 setup(
     name="pretix-batch-emailer",
     version=__version__,
-    description="Send an Email to all currently displayed orders. ",
+    description="Send a Batch Email to all currently displayed orders.",
     long_description=long_description,
     url="https://github.com/bockstaller/pretix-batch-emailer",
     author="Lukas Bockstaller",

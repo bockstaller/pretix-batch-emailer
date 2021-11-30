@@ -15,7 +15,9 @@ class PluginApp(PluginConfig):
     class PretixPluginMeta:
         name = gettext_lazy("Batch Emailer")
         author = "Lukas Bockstaller"
-        description = gettext_lazy("Send an Email to all currently displayed orders. ")
+        description = gettext_lazy(
+            "Send a Batch Email to all currently displayed orders. "
+        )
         visible = True
         version = __version__
         category = "FEATURE"

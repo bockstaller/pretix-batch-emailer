@@ -18,7 +18,7 @@ from pretix.base.signals import logentry_display
 def nav_topbar_f(sender, request=None, **kwargs):
     if re.match(r"^/control/event/(?P<organizer>[^/]+)/(?P<event>[^/]+)/", sender.path):
         if "pretix_batch_emailer" in sender.event.plugins:
-            return [{"label": _("Email visible orders"), "url": "#batch-emailer"}]
+            return [{"label": _("Batch email visible orders"), "url": "#batch-emailer"}]
 
     return [{"label": "", "url": ""}]
 
@@ -77,7 +77,7 @@ def pretixcontrol_logentry_display(sender, logentry, **kwargs):
     plains = {
         "pretix.plugins.pretix_batch_emailer.sent": _("Batch email was sent"),
         "pretix.plugins.pretix_batch_emailer.order.email.sent": _(
-            "The order received a mass email."
+            "The order received a batch email."
         ),
     }
     if logentry.action_type in plains:
